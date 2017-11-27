@@ -6,6 +6,9 @@
 #include <LinkedList.h>
 #include <LedMatrixObject.h>
 
+// Current Version used to inform raspberryPi so it can choose when to update Arduino
+String version = "1";
+
 // Set variables
 LedMatrixObject *led = new LedMatrixObject(36, 34, 32, 30, 28, 26, 24, 22);
 int currentIcon = 0; //0 = Blank screen
@@ -250,6 +253,8 @@ void start() {
 
 void doCommand(char command) {
   switch (command) {
+    case 'v':
+      Serial.println(version);
     case '0':
       analogWrite(LEFT_SPEED, 0);
       analogWrite(RIGHT_SPEED, 0);
