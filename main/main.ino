@@ -212,7 +212,7 @@ unsigned char Beat[16][16] = {
 }; // Index 7
 
 void render() {
-  switch currentIcon {
+  switch (currentIcon) {
     case 0:
       //Do nothing
       break;
@@ -248,7 +248,7 @@ void render() {
 }
 
 void start() {
-  heartbeat(0);
+  heartbeat(1);
 }
 
 void doCommand(char command) {
@@ -312,13 +312,13 @@ void doCommand(char command) {
       currentIcon = 5;
       break;
     case 'h':
-      heartbeat(0);
+      heartbeat(1);
       break;
   }
 }
 
 void heartbeat(int phase) {
-  switch phase {
+  switch (phase) {
     case 1:
       currentIcon = 7;
       addEvent(heartbeat, 2, 200);
