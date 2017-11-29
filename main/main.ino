@@ -66,7 +66,7 @@ void loop() {
     eventToPlay->func(eventToPlay->param);
     delete eventToPlay;
   } else {
-    Serial.println("waiting");
+    //Serial.println("waiting");
   }
   //Render icons
   render();
@@ -312,29 +312,32 @@ void doCommand(char command) {
       currentIcon = 5;
       break;
     case 'h':
+      currentIcon = 6;
       heartbeat(1);
       break;
   }
 }
 
 void heartbeat(int phase) {
-  switch (phase) {
-    case 1:
-      currentIcon = 7;
-      addEvent(heartbeat, 2, 200);
-      break;
-    case 2:
-      currentIcon = 6;
-      addEvent(heartbeat, 3, 200);
-      break;
-    case 3:
-      currentIcon = 7;
-      addEvent(heartbeat, 4, 200);
-      break;
-    case 4:
-      currentIcon = 6;
-      addEvent(heartbeat, 1, 600);
-      break;
+  if (currentIcon == 6 || currentIcon == 7) {
+    switch (phase) {
+      case 1:
+        currentIcon = 7;
+        addEvent(heartbeat, 2, 200);
+        break;
+      case 2:
+        currentIcon = 6;
+        addEvent(heartbeat, 3, 200);
+        break;
+      case 3:
+        currentIcon = 7;
+        addEvent(heartbeat, 4, 200);
+        break;
+      case 4:
+        currentIcon = 6;
+        addEvent(heartbeat, 1, 600);
+        break;
+    }
   }
 }
 
